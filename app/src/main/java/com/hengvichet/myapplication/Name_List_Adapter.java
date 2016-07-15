@@ -1,6 +1,7 @@
 package com.hengvichet.myapplication;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,19 +16,33 @@ import java.util.List;
  * Created by Vichet on 07/01/2016.
  */
 public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.ViewHolder> {
+    private Cursor cursor;
+    private Name_List mNameLists;
+    public Name_List_Adapter(){
 
-    private List<Name_List> mNameLists;
-    public Name_List_Adapter(Context context, List<Name_List> namelist) {
-        mNameLists = namelist;
+    }
+
+    public void setmNameLists(Name_List nameLists){
+        this.mNameLists = mNameLists;
+    }
+    public void setCursor(Cursor cursor){
+        this.cursor = cursor;
+        notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        // Your holder should contain a member variable
+        // for any view that will be set as you render a row
         public TextView name,ip;
         public Button loadButton;
         public Button deleteButton;
-        public ViewHolder(View itemView) {
-            super(itemView);
 
+        // We also create a constructor that accepts the entire item row
+        // and does the view lookups to find each subview
+        public ViewHolder(View itemView) {
+            // Stores the itemView in a public final member variable that can be used
+            // to access the context from any ViewHolder instance.
+            super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             ip = (TextView) itemView.findViewById(R.id.ip);
             loadButton = (Button) itemView.findViewById(R.id.loadButton);
@@ -37,41 +52,48 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    Log.d("Adapter", "position " + position);
-                    Name_List namelist = mNameLists.get(position);
-                    Log.d("Adapter", "ip " + namelist.getIp());
-                }
-            });
+                    cursor.moveToPosition(position);
+                    String nametext = cursor.getString(0);
+                    String iptext = cursor.getString(1);
 
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    Log.d("Adapter", "delete position new " + position);
-                    mNameLists.remove(position);
-                    notifyItemRemoved(position);
+                    Log.d("Adapter", "position " + position);
+                   // Name_List namelist = mNameLists.getIp(position);
+                    //Name_List namelist = mNameLists.getIp(cursor);
+                    //Log.d("Adapter", "ip " + namelist.getIp());
                 }
             });
         }
-    }
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Name_List namelist = mNameLists.get(position);
-        holder.name.setText(namelist.getName());
-        holder.ip.setText(namelist.getIp());
 
-    }
-    @Override
-    public int getItemCount() {
-        return mNameLists.size();
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
+
+        // Inflate the custom layout
         View rowView = inflater.inflate(R.layout.item_row, parent, false);
+
+        // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(rowView);
         return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(Name_List_Adapter.ViewHolder holder, int position) {
+        Log.d("Database", "position " + position);
+        cursor.moveToPosition(position);
+        String nametext = cursor.getString(0);
+        String iptext = cursor.getString(1);
+        holder.name.setText(nametext);
+        holder.ip.setText(iptext);
+    }
+
+    @Override
+    public int getItemCount() {
+        if (cursor == null) {
+            return 0;
+        }
+        return cursor.getCount();
     }
 }
