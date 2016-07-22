@@ -19,9 +19,8 @@ public class SaveList extends AppCompatActivity {
         setContentView(R.layout.activity_save_list);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerVeiw);
 
-        MyDatabase myDatabase = new MyDatabase(getApplicationContext()); // open database
-        String[] args = {};
-        Cursor cursor = myDatabase.getReadableDatabase().rawQuery("SELECT * FROM tb_telnet", args); // query
+
+        Cursor cursor = DatabaseHelper.getAll(getApplicationContext());
 
 //        List<Name_List> namelist = new ArrayList<>();
 //
@@ -35,7 +34,7 @@ public class SaveList extends AppCompatActivity {
 //            namelist.add(nameItem);
 //        }
 
-        Name_List_Adapter namelistadapter = new Name_List_Adapter();
+        Name_List_Adapter namelistadapter = new Name_List_Adapter(getApplicationContext());
         namelistadapter.setCursor(cursor);
         recyclerView.setAdapter(namelistadapter);
 

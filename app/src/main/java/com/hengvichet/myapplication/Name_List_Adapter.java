@@ -18,8 +18,10 @@ import java.util.List;
 public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.ViewHolder> {
     private Cursor cursor;
     private Name_List mNameLists;
-    public Name_List_Adapter(){
+    private Context context;
 
+    public Name_List_Adapter(Context context){
+        this.context = context;
     }
 
     public void setmNameLists(Name_List nameLists){
@@ -56,13 +58,28 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
                     String nametext = cursor.getString(0);
                     String iptext = cursor.getString(1);
 
-                    Log.d("Adapter", "position " + position);
-                   // Name_List namelist = mNameLists.getIp(position);
+                    //Log.d("Adapter", "position " + position);
+                    //Name_List namelist = mNameLists.getIp(position);
                     //Name_List namelist = mNameLists.getIp(cursor);
                     //Log.d("Adapter", "ip " + namelist.getIp());
                 }
             });
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    cursor.moveToPosition(position);
+                    String nametext = cursor.getString(0);
+                   // Log.d("Adapter","delete position new" + position);
+                    //notifyItemRemoved(position);
+                    DatabaseHelper.delete(context,nametext);
+                    cursor = DatabaseHelper.getAll(context);
+                    notifyItemRemoved(position); 
+
+                }
+            });
         }
+
 
     }
 

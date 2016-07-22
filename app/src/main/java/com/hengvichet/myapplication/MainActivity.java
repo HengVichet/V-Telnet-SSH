@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Database", "added cat record");
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
