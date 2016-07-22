@@ -68,13 +68,14 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
+                    Log.d("TEST", "position " + position + ", cusor: " + cursor.getCount());
                     cursor.moveToPosition(position);
                     String nametext = cursor.getString(0);
                    // Log.d("Adapter","delete position new" + position);
                     //notifyItemRemoved(position);
                     DatabaseHelper.delete(context,nametext);
                     cursor = DatabaseHelper.getAll(context);
-                    notifyItemRemoved(position); 
+                    notifyDataSetChanged();
 
                 }
             });

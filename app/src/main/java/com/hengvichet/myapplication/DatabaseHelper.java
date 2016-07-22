@@ -28,5 +28,6 @@ public class DatabaseHelper {
         myDatabase.getWritableDatabase().execSQL("DELETE FROM tb_telnet WHERE name = ?", data );
 
     }
+
 }
 
