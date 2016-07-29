@@ -74,7 +74,7 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
                     //notifyItemRemoved(position);
                     DatabaseHelper.delete(context,nametext);
                     cursor = DatabaseHelper.getAll(context);
-                    notifyItemRemoved(position); 
+                    notifyDataSetChanged();
 
                 }
             });
