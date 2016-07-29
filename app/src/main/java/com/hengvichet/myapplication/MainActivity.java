@@ -1,12 +1,12 @@
 package com.hengvichet.myapplication;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,11 +34,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void save() {
-        //MyDatabase myDatabase = new MyDatabase(getApplicationContext());
-        //String[] data = {"Cat", "A Pet","A Type"};
-        DatabaseHelper.save(getApplicationContext(),"Cat", "A Pet","A Type");
-        //myDatabase.getWritableDatabase().execSQL("INSERT INTO tb_telnet VALUES ( ?, ? ,?)", data);
-        //Log.d("Database", "added cat record");
+        MyDatabase myDatabase = new MyDatabase(getApplicationContext());
+        EditText editTextName = (EditText) findViewById(R.id.textViewName);
+        String TName = editTextName.getText().toString();
+        EditText editTextIP = (EditText) findViewById(R.id.textViewIP);
+        String TIP = editTextIP.getText().toString();
+        String[] data = {TName, TIP,"Telnet"};
+        myDatabase.getWritableDatabase().execSQL("INSERT INTO tb_telnet VALUES ( ?, ? ,?)", data);
+        Log.d("Database", "added cat record");
     }
 
 

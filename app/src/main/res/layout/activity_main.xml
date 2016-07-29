@@ -77,22 +77,22 @@
         android:layout_height="wrap_content"
         android:lines="1"
         android:text="Input Host Name"
-        android:id="@+id/textView3"
+        android:id="@+id/textViewName"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignRight="@+id/but_save"
         android:layout_alignEnd="@+id/but_save"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"
-        android:layout_above="@+id/textView4" />
+        android:layout_alignLeft="@+id/textViewIP"
+        android:layout_alignStart="@+id/textViewIP"
+        android:layout_above="@+id/textViewIP" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:lines="1"
         android:text="Input Host IP"
-        android:id="@+id/textView4"
+        android:id="@+id/textViewIP"
         android:layout_alignTop="@+id/textView"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
