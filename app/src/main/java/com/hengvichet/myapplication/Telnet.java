@@ -30,8 +30,8 @@ public class Telnet extends AppCompatActivity {
 
         final TextView responseTextView = (TextView) findViewById(R.id.responseTextView);
 
-        String ip = "223.223.174.141";
-        int port = 21;
+        String ip = "192.168.1.103";
+        int port = 23;
 
         MyClientTask myClientTask = new MyClientTask(ip, port){
             @Override

@@ -31,6 +31,7 @@ public class MyClientTask extends AsyncTask<Void, Void, String> {
         try {
             Log.d("telnet", "connecting to " + dstAddress + " on port " + dstPort);
             socket = new Socket(dstAddress, dstPort);
+//            socket.
 
             ByteArrayOutputStream byteArrayOutputStream =
                     new ByteArrayOutputStream(1024);
