@@ -50,5 +50,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+
+        Intent intent = new Intent(getApplicationContext(), Telnet.class);
+        startActivity(intent);
     }
 }
