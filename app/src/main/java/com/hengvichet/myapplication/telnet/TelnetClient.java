@@ -23,6 +23,7 @@ public class TelnetClient {
     private LinkedList<Thread> threads = new LinkedList();
     private PipedInputStream spyReader;
 
+
     public TelnetClient(String ip, int port) throws IOException {
         client = new TelnetConnection(ip, port);
         client.connect();

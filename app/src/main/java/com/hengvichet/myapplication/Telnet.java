@@ -1,7 +1,10 @@
 package com.hengvichet.myapplication;
 
 import android.app.Activity;
+
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
@@ -11,11 +14,16 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.Enumeration;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
+
+import com.hengvichet.myapplication.telnet.TelnetClient;
+import com.hengvichet.myapplication.telnet.TelnetTask;
 
 
 /**
@@ -30,16 +38,19 @@ public class Telnet extends AppCompatActivity {
 
         final TextView responseTextView = (TextView) findViewById(R.id.responseTextView);
 
-        String ip = "192.168.1.103";
-        int port = 23;
-
-        MyClientTask myClientTask = new MyClientTask(ip, port){
+        TelnetTask telnetTask = new TelnetTask(){
             @Override
-            protected void onPostExecute(String response) {
-                super.onPostExecute(response);
-                responseTextView.setText(response);
+            protected void onProgressUpdate(String... values) {
+                super.onProgressUpdate(values);
+                responseTextView.setText(values[0]);
             }
         };
-        myClientTask.execute();
+
+        Log.d("TEst", "connecting");
+
+        telnetTask.execute();
+
     }
+
+
 }
