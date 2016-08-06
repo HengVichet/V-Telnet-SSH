@@ -22,12 +22,14 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Load Saved List"
-        android:id="@+id/but_load_save"
-        android:layout_marginBottom="83dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
+        android:text="Connect"
+        android:id="@+id/but_connect"
+        android:layout_above="@+id/but_save"
+        android:layout_marginBottom="24dp"
+        android:layout_alignRight="@+id/but_load_save"
+        android:layout_alignEnd="@+id/but_load_save"
+        android:layout_alignLeft="@+id/but_save"
+        android:layout_alignStart="@+id/but_save" />
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -35,11 +37,22 @@
         android:text="Save"
         android:id="@+id/but_save"
         android:layout_above="@+id/but_load_save"
-        android:layout_alignLeft="@+id/but_load_save"
-        android:layout_alignStart="@+id/but_load_save"
-        android:layout_marginBottom="65dp"
+        android:layout_marginBottom="22dp"
         android:layout_alignRight="@+id/but_load_save"
-        android:layout_alignEnd="@+id/but_load_save" />
+        android:layout_alignEnd="@+id/but_load_save"
+        android:layout_alignLeft="@+id/but_load_save"
+        android:layout_alignStart="@+id/but_load_save" />
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Load Saved List"
+        android:id="@+id/but_load_save"
+        android:layout_marginBottom="23dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -55,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Telnet"
-        android:id="@+id/radioButton"
+        android:id="@+id/radioButTelnet"
         android:layout_marginTop="68dp"
         android:checked="false"
         android:layout_below="@+id/textView"
@@ -66,11 +79,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SSH"
-        android:id="@+id/radioButton2"
+        android:id="@+id/radioButSSH"
         android:checked="false"
-        android:layout_above="@+id/but_save"
-        android:layout_alignLeft="@+id/radioButton"
-        android:layout_alignStart="@+id/radioButton" />
+        android:layout_alignTop="@+id/radioButTelnet"
+        android:layout_toRightOf="@+id/but_connect"
+        android:layout_toEndOf="@+id/but_connect" />
 
     <EditText
         android:layout_width="wrap_content"

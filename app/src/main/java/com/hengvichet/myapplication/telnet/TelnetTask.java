@@ -16,7 +16,7 @@ public class TelnetTask extends AsyncTask<Void, String, String> {
     protected String doInBackground(Void... params) {
         TelnetClient telnetClient = null;
         try {
-            String ip = "192.168.1.103";
+            String ip = "192.168.21.7";
             int port = 23;
             telnetClient = new TelnetClient(ip, port);
             InputStreamReader inputStreamReader = telnetClient.spawnSpy();

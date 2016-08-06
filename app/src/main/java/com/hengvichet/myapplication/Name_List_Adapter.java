@@ -35,7 +35,7 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView name,ip;
+        public TextView name,ip,type;
         public Button loadButton;
         public Button deleteButton;
 
@@ -47,6 +47,7 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             ip = (TextView) itemView.findViewById(R.id.ip);
+            type = (TextView) itemView.findViewById(R.id.type);
             loadButton = (Button) itemView.findViewById(R.id.loadButton);
             deleteButton = (Button) itemView.findViewById(R.id.deleteButton);
 
@@ -57,11 +58,7 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
                     cursor.moveToPosition(position);
                     String nametext = cursor.getString(0);
                     String iptext = cursor.getString(1);
-
-                    //Log.d("Adapter", "position " + position);
-                    //Name_List namelist = mNameLists.getIp(position);
-                    //Name_List namelist = mNameLists.getIp(cursor);
-                    //Log.d("Adapter", "ip " + namelist.getIp());
+                    String typetext = cursor.getString(2);
                 }
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -101,9 +98,11 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
         Log.d("Database", "position " + position);
         cursor.moveToPosition(position);
         String nametext = cursor.getString(0);
-        String iptext = cursor.getString(1);
+        String iptext = "Port:"+ cursor.getString(1);
+        String typetext = " Type:"+ cursor.getString(2);
         holder.name.setText(nametext);
         holder.ip.setText(iptext);
+        holder.type.setText(typetext);
     }
 
     @Override
