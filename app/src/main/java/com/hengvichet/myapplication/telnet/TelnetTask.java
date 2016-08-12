@@ -2,6 +2,7 @@ package com.hengvichet.myapplication.telnet;
 
 import android.app.Activity;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,27 +17,44 @@ public class TelnetTask extends AsyncTask<Void, String, String> {
     protected String doInBackground(Void... params) {
         TelnetClient telnetClient = null;
         try {
-            String ip = "192.168.21.7";
+            String ip = "192.168.1.110";
             int port = 23;
             telnetClient = new TelnetClient(ip, port);
             InputStreamReader inputStreamReader = telnetClient.spawnSpy();
             final BufferedReader reader = new BufferedReader(inputStreamReader);
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        while(!Thread.currentThread().isInterrupted()){
-                            final String line = reader.readLine();
-                            if(line != null) {
-                                onProgressUpdate(line);
-                            }
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
+//            while(isCancelled() != true) {
+//                final String line = reader.readLine();
+//                Log.d("Telnet", "reading line " + line);
+//                if(line != null) {
+//                    publishProgress(line);
+//                }
+//            }
+            String line;
+            while (true){
+                line = reader.readLine();
+                publishProgress(line);
+            }
+
+//            String line;
+//            while((line = reader.readLine()) != null) {
+//                if(line != null) {
+//                publishProgress(line);
+//                }
+//            }
+
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    try {
+//                        while(!Thread.currentThread().isInterrupted()){
+//
+//                        }
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            }).start();
 
         } catch (IOException e) {
             e.printStackTrace();

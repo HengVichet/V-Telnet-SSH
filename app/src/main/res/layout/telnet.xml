@@ -9,7 +9,7 @@
         android:text="Hello"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
     <EditText
         android:id="@+id/commandEditText"
         android:layout_width="match_parent"

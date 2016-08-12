@@ -44,11 +44,19 @@ public class Telnet extends AppCompatActivity {
                 super.onProgressUpdate(values);
                 responseTextView.setText(values[0]);
             }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                responseTextView.setText("Ended");
+            }
         };
 
         Log.d("TEst", "connecting");
 
         telnetTask.execute();
+
+//        telnetTask.cancel(true);
 
     }
 
