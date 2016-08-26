@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -20,6 +21,9 @@ import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hengvichet.myapplication.telnet.TelnetClient;
@@ -31,18 +35,44 @@ import com.hengvichet.myapplication.telnet.TelnetTask;
  */
 public class Telnet extends AppCompatActivity {
 
+    public Button but_go;
+    private TelnetTask telnetTask;
+    private TextView responseTextView;
+
+    public void init(){
+        but_go=(Button)findViewById(R.id.but_go);
+        final EditText commandEditText = (EditText)  findViewById(R.id.commandEditText);
+
+        but_go.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String command = commandEditText.getText().toString();
+                sendCommand(command);
+
+//                TelnetClient telnetClient = null;
+//                OutputStream outputStream = telnetClient.getOutputStream();
+            }
+        });
+    }
+
+    private void sendCommand(String command) {
+        responseTextView.append("\n");
+        telnetTask.sendCommand(command);
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.telnet);
 
-        final TextView responseTextView = (TextView) findViewById(R.id.responseTextView);
+        init();
+        responseTextView = (TextView) findViewById(R.id.responseTextView);
 
-        TelnetTask telnetTask = new TelnetTask(){
+        telnetTask = new TelnetTask(){
             @Override
             protected void onProgressUpdate(String... values) {
                 super.onProgressUpdate(values);
-                responseTextView.setText(values[0]);
+                responseTextView.append(values[0]);
             }
 
             @Override
@@ -60,5 +90,9 @@ public class Telnet extends AppCompatActivity {
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        telnetTask.close();
+    }
 }

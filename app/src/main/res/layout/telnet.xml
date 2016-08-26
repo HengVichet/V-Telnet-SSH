@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/responseTextView"
-        android:text="Hello"
+        android:text="Not Connect"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
@@ -18,16 +18,15 @@
 
     <Button
         android:id="@+id/but_go"
-        android:layout_width="80dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Go"
-        android:layout_gravity="center_horizontal" />
+        android:text="Go" />
 
     <Button
         android:id="@+id/but_clear"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clear"
-        android:layout_gravity="right" />
+        android:text="Clear" />
+
 </LinearLayout>

@@ -10,6 +10,7 @@ import java.util.Locale;
 import android.util.Log;
 
 import org.apache.commons.net.telnet.TelnetClient;
+import org.apache.commons.net.telnet.TelnetNotificationHandler;
 
 public class TelnetConnection {
 	private TelnetClient client = null;
@@ -20,6 +21,13 @@ public class TelnetConnection {
 		SERVER_IP = ip;
 		SERVERPORT = port;
 		client = new TelnetClient();
+
+        client.registerNotifHandler(new TelnetNotificationHandler() {
+            @Override
+            public void receivedNegotiation(int i, int i1) {
+                Log.d("Telnet client", "received negotiation  " + i + ", " + i1);
+            }
+        });
 	}
 
 	public void connect() throws IOException{

@@ -13,28 +13,53 @@ import java.io.InputStreamReader;
  */
 public class TelnetTask extends AsyncTask<Void, String, String> {
 
+
+    private TelnetClient telnetClient;
+
+    public void sendCommand(String cmd){
+        if(telnetClient == null || !telnetClient.isConnected()){
+            return;
+        }
+        telnetClient.sendCommand(cmd);
+    }
+
+    public void close() {
+        if(telnetClient != null){
+            if (telnetClient.isConnected()) {
+                telnetClient.disconnect();
+            }
+        }
+    }
+
     @Override
     protected String doInBackground(Void... params) {
-        TelnetClient telnetClient = null;
+         telnetClient = null;
         try {
-            String ip = "192.168.1.110";
+            String ip = "172.20.10.11";
             int port = 23;
             telnetClient = new TelnetClient(ip, port);
+
+
             InputStreamReader inputStreamReader = telnetClient.spawnSpy();
             final BufferedReader reader = new BufferedReader(inputStreamReader);
 
-//            while(isCancelled() != true) {
+            int read;
+            while(true) {
+                read = reader.read();
+                char ch = (char) read;
+                Log.d("Telnet", "ch " + ch);
+                String string = ch + "";
 //                final String line = reader.readLine();
 //                Log.d("Telnet", "reading line " + line);
 //                if(line != null) {
-//                    publishProgress(line);
+                    publishProgress(string);
 //                }
-//            }
-            String line;
-            while (true){
-                line = reader.readLine();
-                publishProgress(line);
             }
+//            String line;
+//            while (true){
+//                line = reader.readLine();
+//                publishProgress(line);
+//            }
 
 //            String line;
 //            while((line = reader.readLine()) != null) {
@@ -63,4 +88,5 @@ public class TelnetTask extends AsyncTask<Void, String, String> {
         }
         return "success";
     }
+
 }
