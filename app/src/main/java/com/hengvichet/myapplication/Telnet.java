@@ -35,12 +35,13 @@ import com.hengvichet.myapplication.telnet.TelnetTask;
  */
 public class Telnet extends AppCompatActivity {
 
-    public Button but_go;
+    public Button but_go,but_clear;
     private TelnetTask telnetTask;
     private TextView responseTextView;
 
     public void init(){
         but_go=(Button)findViewById(R.id.but_go);
+        but_clear=(Button)findViewById(R.id.but_clear);
         final EditText commandEditText = (EditText)  findViewById(R.id.commandEditText);
 
         but_go.setOnClickListener(new View.OnClickListener() {
@@ -48,15 +49,22 @@ public class Telnet extends AppCompatActivity {
             public void onClick(View v) {
                 String command = commandEditText.getText().toString();
                 sendCommand(command);
+                Log.d("Command = ", command);
+                commandEditText.setText("");
+            }
 
-//                TelnetClient telnetClient = null;
-//                OutputStream outputStream = telnetClient.getOutputStream();
+        });
+
+        but_clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                responseTextView.setText("");
             }
         });
     }
 
     private void sendCommand(String command) {
-        responseTextView.append("\n");
+        responseTextView.append("\n\r");
         telnetTask.sendCommand(command);
     }
 
@@ -82,7 +90,7 @@ public class Telnet extends AppCompatActivity {
             }
         };
 
-        Log.d("TEst", "connecting");
+      //  Log.d("TEst", "connecting");
 
         telnetTask.execute();
 
@@ -90,9 +98,9 @@ public class Telnet extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        telnetTask.close();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        telnetTask.close();
+//    }
 }

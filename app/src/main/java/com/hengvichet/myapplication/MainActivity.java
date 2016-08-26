@@ -54,8 +54,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 save();
-//                Intent savelist=new Intent(MainActivity.this,SaveList.class);
-//                startActivity(savelist);
             }
         });
         but_load_save=(Button)findViewById(R.id.but_load_save);

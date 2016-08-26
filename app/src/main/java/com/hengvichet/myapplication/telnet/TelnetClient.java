@@ -46,7 +46,7 @@ public class TelnetClient {
         }
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(cmd.toUpperCase(Locale.ENGLISH));
+        stringBuilder.append(cmd);
         stringBuilder.append("\n\r");
 
         byte[] cmdbyte = stringBuilder.toString().getBytes();
@@ -98,7 +98,7 @@ public class TelnetClient {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(cmd.toUpperCase(Locale.ENGLISH));
+        stringBuilder.append(cmd);
         stringBuilder.append("\n\r");
 
         byte[] cmdbyte = stringBuilder.toString().getBytes();
@@ -135,7 +135,7 @@ public class TelnetClient {
 
         StringBuilder stringBuilder = new StringBuilder();
 
-        stringBuilder.append(cmd.toUpperCase(Locale.ENGLISH));
+        stringBuilder.append(cmd);
         stringBuilder.append("\n\r");
 
         byte[] cmdbyte = stringBuilder.toString().getBytes();

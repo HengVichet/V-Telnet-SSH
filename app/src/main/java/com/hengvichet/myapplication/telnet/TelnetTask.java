@@ -17,9 +17,9 @@ public class TelnetTask extends AsyncTask<Void, String, String> {
     private TelnetClient telnetClient;
 
     public void sendCommand(String cmd){
-        if(telnetClient == null || !telnetClient.isConnected()){
-            return;
-        }
+//        if(telnetClient == null || !telnetClient.isConnected()){
+//            return;
+//        }
         telnetClient.sendCommand(cmd);
     }
 
@@ -39,7 +39,6 @@ public class TelnetTask extends AsyncTask<Void, String, String> {
             int port = 23;
             telnetClient = new TelnetClient(ip, port);
 
-
             InputStreamReader inputStreamReader = telnetClient.spawnSpy();
             final BufferedReader reader = new BufferedReader(inputStreamReader);
 
@@ -49,37 +48,9 @@ public class TelnetTask extends AsyncTask<Void, String, String> {
                 char ch = (char) read;
                 Log.d("Telnet", "ch " + ch);
                 String string = ch + "";
-//                final String line = reader.readLine();
-//                Log.d("Telnet", "reading line " + line);
-//                if(line != null) {
                     publishProgress(string);
-//                }
             }
-//            String line;
-//            while (true){
-//                line = reader.readLine();
-//                publishProgress(line);
-//            }
 
-//            String line;
-//            while((line = reader.readLine()) != null) {
-//                if(line != null) {
-//                publishProgress(line);
-//                }
-//            }
-
-//            new Thread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        while(!Thread.currentThread().isInterrupted()){
-//
-//                        }
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }).start();
 
         } catch (IOException e) {
             e.printStackTrace();
