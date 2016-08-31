@@ -25,10 +25,4 @@ public class Name_List {
     public void setIp(String ip) {
         this.ip = ip;
     }
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
-    }
 }

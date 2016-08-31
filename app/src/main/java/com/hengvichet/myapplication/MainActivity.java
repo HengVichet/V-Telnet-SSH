@@ -14,21 +14,7 @@ public class MainActivity extends AppCompatActivity {
     public Button but_load_save, but_save,but_connect;
     public RadioButton rbut_telnet,rbut_shh;
     public void init(){
-        rbut_telnet = (RadioButton)findViewById(R.id.radioButTelnet);
-        rbut_shh = (RadioButton)findViewById(R.id.radioButSSH);
         but_connect=(Button)findViewById(R.id.but_connect);
-        rbut_telnet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                    rbut_shh.setChecked(false);
-            }
-        });
-        rbut_shh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                rbut_telnet.setChecked(false);
-            }
-        });
         but_connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -36,14 +22,6 @@ public class MainActivity extends AppCompatActivity {
                 String TName = editTextName.getText().toString();
                 EditText editTextIP = (EditText) findViewById(R.id.textViewIP);
                 String TIP = editTextIP.getText().toString();
-                String Type;
-                RadioButton BTelnet = (RadioButton) findViewById(R.id.radioButTelnet);
-                boolean checktel = BTelnet.isChecked();
-                if (checktel)
-                    Type="Telnet";
-                else
-                    Type="SSH";
-
                 Intent intent = new Intent(getApplicationContext(), Telnet.class);
                 startActivity(intent);
             }
@@ -72,17 +50,8 @@ public class MainActivity extends AppCompatActivity {
         String TName = editTextName.getText().toString();
         EditText editTextIP = (EditText) findViewById(R.id.textViewIP);
         String TIP = editTextIP.getText().toString();
-        String Type;
-
-        RadioButton BTelnet = (RadioButton) findViewById(R.id.radioButTelnet);
-        boolean checktel = BTelnet.isChecked();
-        if (checktel)
-            Type="Telnet";
-        else
-            Type="SSH";
-
-        String[] data = {TName, TIP,Type};
-        myDatabase.getWritableDatabase().execSQL("INSERT INTO tb_telnet VALUES ( ?, ? ,?)", data);
+        String[] data = {TName, TIP};
+        myDatabase.getWritableDatabase().execSQL("INSERT INTO tb_telnet VALUES ( ?, ?)", data);
         Log.d("Database", "added cat record");
     }
 

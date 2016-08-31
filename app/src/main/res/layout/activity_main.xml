@@ -24,32 +24,32 @@
         android:layout_height="wrap_content"
         android:text="Connect"
         android:id="@+id/but_connect"
-        android:layout_above="@+id/but_save"
-        android:layout_marginBottom="24dp"
-        android:layout_alignRight="@+id/but_load_save"
-        android:layout_alignEnd="@+id/but_load_save"
-        android:layout_alignLeft="@+id/but_save"
-        android:layout_alignStart="@+id/but_save" />
+        android:layout_marginTop="67dp"
+        android:layout_below="@+id/textViewIP"
+        android:layout_alignLeft="@+id/textViewIP"
+        android:layout_alignStart="@+id/textViewIP"
+        android:layout_alignRight="@+id/but_save"
+        android:layout_alignEnd="@+id/but_save" />
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/but_save"
-        android:layout_above="@+id/but_load_save"
-        android:layout_marginBottom="22dp"
-        android:layout_alignRight="@+id/but_load_save"
-        android:layout_alignEnd="@+id/but_load_save"
+        android:layout_below="@+id/but_connect"
         android:layout_alignLeft="@+id/but_load_save"
-        android:layout_alignStart="@+id/but_load_save" />
+        android:layout_alignStart="@+id/but_load_save"
+        android:layout_marginTop="50dp"
+        android:layout_alignRight="@+id/but_load_save"
+        android:layout_alignEnd="@+id/but_load_save" />
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Load Saved List"
         android:id="@+id/but_load_save"
-        android:layout_marginBottom="23dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/but_save"
         android:layout_centerHorizontal="true" />
 
 
@@ -64,27 +64,6 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="28dp"
         android:height="24dp" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telnet"
-        android:id="@+id/radioButTelnet"
-        android:layout_marginTop="68dp"
-        android:checked="true"
-        android:layout_below="@+id/textView"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_toEndOf="@+id/textView" />
-
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SSH"
-        android:id="@+id/radioButSSH"
-        android:checked="false"
-        android:layout_alignTop="@+id/radioButTelnet"
-        android:layout_toRightOf="@+id/but_connect"
-        android:layout_toEndOf="@+id/but_connect" />
 
     <EditText
         android:layout_width="wrap_content"

@@ -47,7 +47,6 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
             ip = (TextView) itemView.findViewById(R.id.ip);
-            type = (TextView) itemView.findViewById(R.id.type);
             loadButton = (Button) itemView.findViewById(R.id.loadButton);
             deleteButton = (Button) itemView.findViewById(R.id.deleteButton);
 
@@ -58,7 +57,6 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
                     cursor.moveToPosition(position);
                     String nametext = cursor.getString(0);
                     String iptext = cursor.getString(1);
-                    String typetext = cursor.getString(2);
                 }
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -99,10 +97,8 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
         cursor.moveToPosition(position);
         String nametext = cursor.getString(0);
         String iptext = "Port:"+ cursor.getString(1);
-        String typetext = " Type:"+ cursor.getString(2);
         holder.name.setText(nametext);
         holder.ip.setText(iptext);
-        holder.type.setText(typetext);
     }
 
     @Override
