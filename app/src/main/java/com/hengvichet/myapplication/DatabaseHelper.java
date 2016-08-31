@@ -16,9 +16,9 @@ public class DatabaseHelper {
         return cursor;
     }
 
-    public static void save(Context context, String ip, String name, String type) {
+    public static void save(Context context, String ip, String name) {
         MyDatabase myDatabase = new MyDatabase(context);
-        String[] data = {ip, name, type};
+        String[] data = {ip, name};
         myDatabase.getWritableDatabase().execSQL("INSERT INTO tb_telnet VALUES ( ?, ? ,?)", data);
         //Log.d("Database", "added cat record");
     }

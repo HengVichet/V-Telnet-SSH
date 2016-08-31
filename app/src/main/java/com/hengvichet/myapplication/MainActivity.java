@@ -12,17 +12,18 @@ import android.widget.RadioButton;
 public class MainActivity extends AppCompatActivity {
 
     public Button but_load_save, but_save,but_connect;
-    public RadioButton rbut_telnet,rbut_shh;
     public void init(){
         but_connect=(Button)findViewById(R.id.but_connect);
         but_connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText editTextName = (EditText) findViewById(R.id.textViewName);
-                String TName = editTextName.getText().toString();
                 EditText editTextIP = (EditText) findViewById(R.id.textViewIP);
                 String TIP = editTextIP.getText().toString();
+                EditText editTextPort = (EditText) findViewById(R.id.textViewPort);
+                String Tport = editTextPort.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), Telnet.class);
+                intent.putExtra("IP",TIP);
+                intent.putExtra("Port",Tport);
                 startActivity(intent);
             }
         });
@@ -46,13 +47,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void save() {
         MyDatabase myDatabase = new MyDatabase(getApplicationContext());
-        EditText editTextName = (EditText) findViewById(R.id.textViewName);
-        String TName = editTextName.getText().toString();
         EditText editTextIP = (EditText) findViewById(R.id.textViewIP);
         String TIP = editTextIP.getText().toString();
-        String[] data = {TName, TIP};
+        EditText editTextPort = (EditText) findViewById(R.id.textViewPort);
+        String Tport = editTextPort.getText().toString();
+        String[] data = {TIP, Tport};
         myDatabase.getWritableDatabase().execSQL("INSERT INTO tb_telnet VALUES ( ?, ?)", data);
         Log.d("Database", "added cat record");
+        editTextIP.setText("");
+        editTextPort.setText("");
+
     }
 
 

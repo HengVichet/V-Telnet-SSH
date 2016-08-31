@@ -16,6 +16,7 @@ import java.net.SocketException;
 import java.util.Enumeration;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.annotation.Nullable;
@@ -73,6 +74,9 @@ public class Telnet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.telnet);
 
+        Intent intent = getIntent();
+        String ip = intent.getStringExtra("IP");
+        String port = intent.getStringExtra("Port");
         init();
         responseTextView = (TextView) findViewById(R.id.responseTextView);
 

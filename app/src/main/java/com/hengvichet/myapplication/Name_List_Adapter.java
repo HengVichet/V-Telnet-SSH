@@ -35,7 +35,7 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView name,ip,type;
+        public TextView ip,port;
         public Button loadButton;
         public Button deleteButton;
 
@@ -45,8 +45,8 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.name);
-            ip = (TextView) itemView.findViewById(R.id.ip);
+            ip = (TextView) itemView.findViewById(R.id.IP);
+            port = (TextView) itemView.findViewById(R.id.Port);
             loadButton = (Button) itemView.findViewById(R.id.loadButton);
             deleteButton = (Button) itemView.findViewById(R.id.deleteButton);
 
@@ -55,8 +55,8 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     cursor.moveToPosition(position);
-                    String nametext = cursor.getString(0);
-                    String iptext = cursor.getString(1);
+                    String iptext = cursor.getString(0);
+                    String porttext = cursor.getString(1);
                 }
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -64,10 +64,10 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     cursor.moveToPosition(position);
-                    String nametext = cursor.getString(0);
+                    String iptext = cursor.getString(0);
                    // Log.d("Adapter","delete position new" + position);
                     //notifyItemRemoved(position);
-                    DatabaseHelper.delete(context,nametext);
+                    DatabaseHelper.delete(context,iptext);
                     cursor = DatabaseHelper.getAll(context);
                     notifyDataSetChanged();
 
@@ -97,8 +97,8 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
         cursor.moveToPosition(position);
         String nametext = cursor.getString(0);
         String iptext = "Port:"+ cursor.getString(1);
-        holder.name.setText(nametext);
-        holder.ip.setText(iptext);
+        holder.ip.setText(nametext);
+        holder.port.setText(iptext);
     }
 
     @Override

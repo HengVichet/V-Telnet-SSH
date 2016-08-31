@@ -35,7 +35,8 @@ public class TelnetTask extends AsyncTask<Void, String, String> {
     protected String doInBackground(Void... params) {
          telnetClient = null;
         try {
-            String ip = "172.20.10.11";
+
+            String ip = "192.168.21.1";
             int port = 23;
             telnetClient = new TelnetClient(ip, port);
 

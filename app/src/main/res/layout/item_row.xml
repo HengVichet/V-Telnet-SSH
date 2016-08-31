@@ -12,7 +12,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/name"
+        android:id="@+id/IP"
         android:textSize="16dp"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
@@ -21,20 +21,11 @@
         android:text="192.168.1.2" />
 
     <TextView
-        android:id="@+id/ip"
-        android:layout_below="@id/name"
+        android:id="@+id/Port"
+        android:layout_below="@id/IP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="25" />
-
-    <TextView
-        android:id="@+id/type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telnet"
-        android:layout_alignTop="@+id/ip"
-        android:layout_toRightOf="@+id/ip"
-        android:layout_toEndOf="@+id/ip" />
+        android:text="Port:"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -42,8 +33,8 @@
         android:text="Delete"
         android:id="@+id/deleteButton"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/name"
-        android:layout_alignEnd="@+id/name" />
+        android:layout_alignRight="@+id/IP"
+        android:layout_alignEnd="@+id/IP" />
 
     <Button
         android:layout_width="wrap_content"
@@ -53,6 +44,4 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/deleteButton"
         android:layout_toStartOf="@+id/deleteButton" />
-
-
 </RelativeLayout>
