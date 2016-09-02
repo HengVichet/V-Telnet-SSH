@@ -25,7 +25,7 @@ public class TelnetConnection {
         client.registerNotifHandler(new TelnetNotificationHandler() {
             @Override
             public void receivedNegotiation(int i, int i1) {
-                Log.d("Telnet client", "received negotiation  " + i + ", " + i1);
+                Log.d("TelnetActivity client", "received negotiation  " + i + ", " + i1);
             }
         });
 	}

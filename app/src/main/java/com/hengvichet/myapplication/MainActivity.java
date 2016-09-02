@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +19,8 @@ public class MainActivity extends AppCompatActivity {
                 EditText editTextIP = (EditText) findViewById(R.id.textViewIP);
                 String TIP = editTextIP.getText().toString();
                 EditText editTextPort = (EditText) findViewById(R.id.textViewPort);
-                String Tport = editTextPort.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), Telnet.class);
+                int Tport = Integer.parseInt(editTextPort.getText().toString());
+                Intent intent = new Intent(getApplicationContext(), TelnetActivity.class);
                 intent.putExtra("IP",TIP);
                 intent.putExtra("Port",Tport);
                 startActivity(intent);
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         but_load_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent savelist=new Intent(MainActivity.this,SaveList.class);
+                Intent savelist=new Intent(MainActivity.this,SaveListActivity.class);
                 startActivity(savelist);
             }
         });
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         Log.d("Database", "added cat record");
         editTextIP.setText("");
         editTextPort.setText("");
-
     }
 
 
@@ -65,7 +63,5 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-
-
     }
 }
