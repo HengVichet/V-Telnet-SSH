@@ -1,6 +1,8 @@
 package com.hengvichet.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.hengvichet.myapplication.telnet.TelnetClient;
 
 import java.util.List;
 
@@ -39,6 +43,7 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
         public Button loadButton;
         public Button deleteButton;
 
+
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
         public ViewHolder(View itemView) {
@@ -51,12 +56,17 @@ public class Name_List_Adapter extends RecyclerView.Adapter<Name_List_Adapter.Vi
             deleteButton = (Button) itemView.findViewById(R.id.deleteButton);
 
             loadButton.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     cursor.moveToPosition(position);
                     String iptext = cursor.getString(0);
                     String porttext = cursor.getString(1);
+                    Intent intent = new Intent(v.getContext(), TelnetActivity.class);
+                    intent.putExtra("IP",iptext);
+                    intent.putExtra("Port",porttext);
+                    v.getContext().startActivity(intent);
                 }
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
